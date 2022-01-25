@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.test.myapplication"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -72,4 +72,4 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
     }
 
-}
+ }

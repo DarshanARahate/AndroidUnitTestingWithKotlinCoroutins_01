@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.test.myapplication.fourthtest.PlaylistFragment
 import com.test.myapplication.thirdtest.Car
 import com.test.myapplication.thirdtest.Engine
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 

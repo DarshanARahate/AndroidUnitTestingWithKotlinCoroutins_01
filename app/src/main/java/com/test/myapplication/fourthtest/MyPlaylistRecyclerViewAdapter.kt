@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.myapplication.R
 
 class MyPlaylistRecyclerViewAdapter (
-    private val values: List<Playlist>)
+        private val values: List<Playlist>)
     : RecyclerView.Adapter<MyPlaylistRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

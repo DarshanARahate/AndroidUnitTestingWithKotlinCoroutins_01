@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.test.myapplication.utils.BaseUnitTest
+import com.test.myapplication.utils.captureValues
 import com.test.myapplication.utils.getValueForTest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
@@ -36,6 +37,33 @@ class PlaylistViewModelTest : BaseUnitTest() {
     fun emitErrorWhenReceiveError() {
         val playlistViewModel = mockFailureCase()
         assertEquals(exception, playlistViewModel.playlists.getValueForTest()!!.exceptionOrNull())
+    }
+
+    @Test
+    fun showSpinnerWhileLoading() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+            assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterPlaylistsLoad() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+            assertEquals(false, values.last())
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterError() = runBlockingTest {
+        val viewModel = mockFailureCase()
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+            assertEquals(false, values.last())
+        }
     }
 
     private fun mockSuccessfulCase() : PlaylistViewModel {
